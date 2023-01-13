@@ -82,32 +82,11 @@ interface Specification<T> {
     isSatisfiedBy(candidate: T): boolean;
 }
 
-class UserIsActiveSpecification implements Specification<User> {
-  isSatisfiedBy(user: User): boolean {
-    return user.active;
-  }
+class CustomerHasOrderedSpecification implements Specification<Customer> {
+    isSatisfiedBy(customer: Customer): boolean {
+        // Specification implementation goes here
+    }
 }
-
-class UserHasEmailSpecification implements Specification<User> {
-  isSatisfiedBy(user: User): boolean {
-    return !!user.email;
-  }
-}
-
-class UserService {
-  // you can also use and specification
-  private userIsActiveSpec = new UserIsActiveSpecification();
-  private userHasEmailSpec = new UserHasEmailSpecification();
-
-  getActiveUsersWithEmail(): User[] {
-    const users = // ... get all users from the repository
-    return users.filter(user => 
-      this.userIsActiveSpec.isSatisfiedBy(user) && 
-      this.userHasEmailSpec.isSatisfiedBy(user)
-    );
-  }
-}
-
 ```
 
 Domain policy:
