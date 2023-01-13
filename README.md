@@ -56,6 +56,14 @@ order.ship("456");
 console.log(order.getEvents());
 ```
 
+Repositories:
+```typescript
+interface OrderRepository {
+    findById(id: number): Order | undefined;
+    save(order: Order): void;
+}
+```
+
 Domain services:
 ```typescript
 class OrderService {
