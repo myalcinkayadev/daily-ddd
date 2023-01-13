@@ -22,6 +22,17 @@
 19. Tactical Design: This is the process of implementing the details of the domain model and its components.
 20. Anti-corruption layer: This is a layer that separates the domain model from external systems and ensures that any changes in the external systems do not affect the integrity of the domain model.
 
+Domain events:
+```typescript
+class OrderCreatedEvent {
+    constructor(public readonly orderId: string) {}
+}
+
+class OrderShippedEvent {
+    constructor(public readonly orderId: string, public readonly trackingNumber: string) {}
+}
+```
+
 Domain services:
 ```typescript
 class OrderService {
