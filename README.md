@@ -76,7 +76,7 @@ class OrderService {
 }
 ```
 
-Specification:
+[Specification:](https://github.com/myalcinkayadev/daily-snippets-ts#specification-pattern)
 ```typescript
 interface Specification<T> {
     isSatisfiedBy(candidate: T): boolean;
