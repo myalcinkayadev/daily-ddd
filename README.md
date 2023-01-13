@@ -33,6 +33,29 @@ class OrderShippedEvent {
 }
 ```
 
+Aggregates:
+```typescript
+class Order {
+    private readonly events: Array<OrderCreatedEvent | OrderShippedEvent> = [];
+
+    constructor(private readonly orderId: string) {
+        this.events.push(new OrderCreatedEvent(orderId));
+    }
+
+    ship(trackingNumber: string) {
+        this.events.push(new OrderShippedEvent(this.orderId, trackingNumber));
+    }
+
+    getEvents() {
+        return this.events;
+    }
+}
+
+const order = new Order("123");
+order.ship("456");
+console.log(order.getEvents());
+```
+
 Domain services:
 ```typescript
 class OrderService {
