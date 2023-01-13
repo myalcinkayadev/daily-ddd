@@ -21,3 +21,21 @@
 18. Strategic Design: This is the process of defining the overall architecture of the system to align with the business goals.
 19. Tactical Design: This is the process of implementing the details of the domain model and its components.
 20. Anti-corruption layer: This is a layer that separates the domain model from external systems and ensures that any changes in the external systems do not affect the integrity of the domain model.
+
+Anti-corruption layer:
+```typescript
+class ExternalOrderService {
+    constructor(private externalApi: ExternalApi) {}
+
+    getOrder(id: number): Order {
+        // Retrieve order from external API
+        const externalOrder = this.externalApi.getOrder(id);
+        // Convert external order to internal order
+        return new Order(
+            externalOrder.id,
+            externalOrder.customerId,
+            externalOrder.items.map(i => new OrderItem(i.productId, i.quantity))
+        );
+    }
+}
+```
